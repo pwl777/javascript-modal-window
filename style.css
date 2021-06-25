@@ -1,0 +1,211 @@
+/* ------ CSS - JavaScript - Modal Window ------ */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-secondary: #fff;
+  --color-dial: radial-gradient(
+    circle 600px at 47.3% 48%,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(82, 141, 165) 90%
+  );
+  --color-primary-1: hsl(205, 86%, 17%);
+  --color-primary-5: hsl(205, 78%, 60%);
+  --color-primary-7: hsl(205, 90%, 76%);
+  --color-primary-10: hsl(205, 100%, 96%);
+  --color-grey-1: hsl(209, 61%, 16%);
+  --color-grey-2: hsla(211, 39%, 23%, 0.503);
+  --color-grey-5: hsl(210, 22%, 49%);
+  --color-title: hsl(180, 100%, 50%);
+  --color-title-2: hsl(300, 100%, 60%);
+  --color-modal: hsl(300, 100%, 50%, 0.503);
+  --color-red-dark: hsl(360, 67%, 44%);
+  --color-red-light: hsl(360, 71%, 66%);
+  --fontfamily-primary: "Roboto", sans-serif;
+  --fontfamily-title: "Henny Penny", cursive;
+  --fontfamily-secondary: "Open Sans", sans-serif;
+  --transition: all 0.3s linear;
+  --rotation: 0;
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --text-shadow: 2px 2px 2px rgba(0, 51, 0, 0.9);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+}
+/* Typography */
+html {
+  /* 62.5% of 16px = 10px */
+  font-size: 62.5%;
+}
+body {
+  position: absolute;
+  z-index: -11;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #fdfdfd;
+  background: url("img/solen-feyissa-4-unsplash.jpg") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  font-family: var(--fontfamily-title);
+}
+h1 {
+  color: var(--color-title-2);
+  filter: drop-shadow(-1px 6px 3px rgba(0, 51, 0, 0.85));
+  margin-top: 2rem;
+  font-size: 5.5rem;
+  text-align: center;
+  text-shadow: var(--text-shadow);
+}
+h4 {
+  font-size: 2.5rem;
+  color: var(--color-secondary);
+}
+@media screen and (max-width: 667px) {
+  h1 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+}
+p {
+  margin-bottom: 1.25rem;
+  font-size: 2rem;
+  font-family: var(--fontfamily-secondary);
+  color: var(--color-secondary);
+}
+
+/*  global classes */
+
+.btn {
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--color-secondary);
+  padding: 0.375rem 0.75rem;
+  letter-spacing: var(--spacing);
+  display: inline-block;
+  transition: var(--transition);
+  font-size: 0.875rem;
+  border: 2px solid var(--color-title);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
+}
+.btn:hover {
+  color: var(--color-secondary);
+  background: var(--color-title);
+}
+
+main {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+/*
+=============== 
+Modal
+===============
+*/
+/*
+.hero {
+  min-height: 100vh;
+  background: url("img/solen-feyissa-4-unsplash.jpg") center/cover no-repeat;
+  display: grid;
+  place-items: center;
+}
+*/
+.banner {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-modal);
+  padding: 4rem 0;
+  border-radius: var(--radius);
+  box-shadow: var(--light-shadow);
+  text-align: center;
+  width: 90vw;
+  max-width: var(--fixed-width);
+}
+.modal-btn {
+  margin-top: 2rem;
+  background: var(--color-primary-5);
+  border-color: var(--color-primary-5);
+  color: var(--color-secondary);
+}
+.modal-btn:hover {
+  background: transparent;
+  color: var(--color-title);
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(73, 166, 233, 0.5);
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+  visibility: hidden;
+  z-index: -10;
+}
+/* OPEN/CLOSE MODAL */
+.open-modal {
+  visibility: visible;
+  z-index: 10;
+}
+.modal-container {
+  background: var(--color-primary-5);
+  filter: drop-shadow(-1px 6px 3px rgba(0, 52, 84, 0.85));
+  border-radius: var(--radius);
+  width: 90vw;
+  height: 30vh;
+  max-width: var(--fixed-width);
+  text-align: center;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+.modal-container p {
+  color: var(--color-secondary);
+  text-shadow: var(--text-shadow);
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  font-family: var(--fontfamily-primary);
+  font-weight: 700;
+}
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-red-dark);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.close-btn:hover {
+  color: var(--color-red-light);
+  transform: scale(1.3);
+}
